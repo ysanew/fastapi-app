@@ -4,9 +4,14 @@ from pydantic import BaseModel
 
 
 class NTaskAdd(BaseModel):
-    task_name: str
-    task_description: Optional[str] = None
+    title: str
+    description: Optional[str] = None
 
 
 class NTask(NTaskAdd):
-    task_id: int
+    id: int
+
+
+class NTaskId(BaseModel):
+    ok: bool = True
+    id: int

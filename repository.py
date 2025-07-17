@@ -1,7 +1,7 @@
 from sqlalchemy import select
 
 from database import new_session, TasksTable
-from schemas import NTaskAdd
+from schemas import NTaskAdd, NTask
 
 
 class TasksRepository:
@@ -17,9 +17,10 @@ class TasksRepository:
             return task.id
 
     @classmethod
-    async def get_all(cls):
+    async def get_all(cls) -> list[NTask]:
         async with new_session() as session:
             query = select(TasksTable)
             result = await session.execute(query)
             task_models = result.scalars().all()
-            return task_models
+            task_schemas = [NTask.model_validate(task_model) for task_model in task_models]
+            return task_schemas
