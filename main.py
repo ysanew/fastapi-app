@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from contextlib import asynccontextmanager
 
 from database import create_tables, delete_tables
+from schemas import NTaskAdd
 
 
 @asynccontextmanager
@@ -20,13 +21,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-class NTaskAdd(BaseModel):
-    task_name: str
-    task_description: Optional[str] = None
 
-
-class NTask(NTaskAdd):
-    task_id: int
 
 tasks = []
 

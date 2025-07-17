@@ -40,5 +40,6 @@ commit_message.txt
 
 **/*.lock
 **/*.bin
+__pycache__/
 
 
