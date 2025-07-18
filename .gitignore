@@ -41,5 +41,5 @@ commit_message.txt
 **/*.lock
 **/*.bin
 __pycache__
-
+tasks.db
 
